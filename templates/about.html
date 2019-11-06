@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ClamSpeech Explorer</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	<style>
+	    .speech {
+	        display: inline-block !important;
+	    }
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="/"><span>ClamSpeech</span>Explorer</a>
+				
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<form action='search' method="get" class="buscaNav">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search" name="query">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dasboard</a></li>
+			<li><a href="/clamour"><em class="fa fa-dashboard">&nbsp;</em> CLAMour</a></li>
+			<li><a href="/navigate"><em class="fa fa-dashboard">&nbsp;</em> Navigate</a></li>
+			<li class="active"><a href="/about"><em class="fa fa-dashboard">&nbsp;</em> What is this?</a></li>
+		<!-- itens de menu, construir
+			<!--<li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Speech</a></li>
+			<li><a href="charts.html"><em class="fa fa-bar-chart">&nbsp;</em> Blocks</a></li>-->
+			
+			
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">About</li>
+			</ol>
+		</div><!--/.row-->
+		
+		
+		<form action='search' method="get" class="buscaTopo">
+			<br><br>
+		
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search" name="query">
+			</div>
+		</form>
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">About</h1>
+			</div>
+		</div><!--/.row-->
+		
+		
+		
+		
+		
+		
+			
+			
+			<div class="col-md-12">
+				<div class="panel panel-default ">
+					<div class="panel-heading">
+						About ClamSpeech Explorer
+						</div>
+					<div class="panel-body timeline-container">
+						The objective of this site is to store, organize and display all the ClamSpeeches inserted into the CLAM blockchain.
+					</div>
+				</div>
+			</div><!--/.col-->
+
+			<div class="col-md-12">
+				<div class="panel panel-default ">
+					<div class="panel-heading">
+						About CLAM
+						</div>
+					<div class="panel-body timeline-container">
+						CLAM is a new digital currency with an innovative payment network. CLAM uses Proof-of-Stake and blockchain technology, which process transactions and issue CLAMs, based on user's address history on Bitcoin, Litecoin and Dogecoin networks. Bitcoin was the world's first cryptocurrency, made possible by a radically new sofware technology called the "blockchain".<br>
+						<br>
+						Learn more about clamcoin <a href='https://clamcoin.org' target='_blank'>here</a> and find the source-code of it <a href='https://github.com/nochowderforyou/clams' target='_blank'>here</a>.					
+					</div>
+				</div>
+			</div><!--/.col-->
+
+			<div class="col-md-12">
+				<div class="panel panel-default ">
+					<div class="panel-heading">
+						Methodology
+						</div>
+					<div class="panel-body timeline-container">
+						Our portal uses a CLAM client to search for all the transactions and CLAMSpeeches related to them. They are stored and organized, removing the default speeches found in the CLAM Client. Empty speeches and the transactions that are in the older format that do not support clamsppech are also discarded for the sake of database size.<br><br>
+						CLAM has a clamour system, were users can vote in the best proposition (related to the coin or not). We stored all the propositions and votes, and created a rank <a href='/clamour'>here</a>. The percentage showed next to the number of votes are calculated in relation to the total of votes cast until now. As each transaction can vote in more than one propositon, adding the total percentage can surpass 100%.
+					</div>
+				</div>
+			</div><!--/.col-->
+
+
+
+
+			
+
+
+			<div class="col-sm-12">
+				<p class="back-link">ClamSpeech Explorer by <a href="https://criptocambio.com.br">CriptoCâmbio</a><br>
+				Clam Donations: <span style="text-transform:none">xTuV6FbN5jVWaRr74uWdwHarYAuLqe1MvL</span></p>
+				<center><iframe data-aa='967024' src='//acceptable.a-ads.com/967024' scrolling='no' style='border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe></center>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+	
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	<script>
+		window.onload = function () {
+	
+};
+	</script>
+		
+</body>
+</html>
+
+{pedaco}
+<!-- 1: pedaco dos ultimos -->
+<li>
+	<div class="timeline-badge primary"><em class="fa fa-comments"></em></div>
+	<div class="timeline-panel">
+		<div class="timeline-heading">
+			<h4 class="timeline-title">Block {bloco}, TX {id}<span onmouseover="this.innerHTML='{altId}'" onmouseout="this.innerHTML='(...)'" style='position:absolute;'>(...)</span>
+			</h4>
+		</div>
+		<div class="timeline-body">
+			<p>
+			<em class="fa fa-sm fa-quote-left color-gray"></em>
+			<script type="text/plain" class='speech'>{speech}</script>
+			<em class="fa fa-sm fa-quote-right color-gray"></em>
+			</p>
+		</div>
+	</div>
+</li>
+
+
+{pedaco}
+<!-- 2: link de paginacao -->
+ <li class="page-item {active}"><a class="page-link" href="?page={page}">{pageplus}</a></li>

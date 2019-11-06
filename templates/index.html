@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ClamSpeech Explorer</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	<style>
+	    .speech {
+	        display: inline-block !important;
+	    }
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#"><span>ClamSpeech</span>Explorer</a>
+				
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<form action='search' method="get" class="buscaNav">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search" name="query">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li class="active"><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dasboard</a></li>
+			<li><a href="/clamour"><em class="fa fa-dashboard">&nbsp;</em> CLAMour</a></li>
+			<li><a href="/navigate"><em class="fa fa-dashboard">&nbsp;</em> Navigate</a></li>
+			<li><a href="/about"><em class="fa fa-dashboard">&nbsp;</em> What is this?</a></li>
+		<!-- itens de menu, construir
+			<!--<li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Speech</a></li>
+			<li><a href="charts.html"><em class="fa fa-bar-chart">&nbsp;</em> Blocks</a></li>-->
+			
+			
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</div><!--/.row-->
+		
+		
+		<form action='search' method="get" class="buscaTopo">
+			<br><br>
+		
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search" name="query">
+			</div>
+		</form>
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Dashboard</h1>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="panel panel-container">
+			<div class="row">
+				<div class="col-xs-4 col-md-4 col-lg-4 no-padding">
+					<div class="panel panel-orange panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-link color-teal"></em>
+							<div class="large ultimoBloco">{latestBlock}</div>
+							<div class="text-muted">Last block indexed</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4 col-md-4 col-lg-4 no-padding">
+					<div class="panel panel-blue panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
+							<div class="large totalSpeech">{totalSpeech}</div>
+							<div class="text-muted">Transactions found</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4 col-md-4 col-lg-4 no-padding">
+					<div class="panel panel-blue panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa-list-ul color-blue"></em>
+							<div class="large mempoolTransactions">0</div>
+							<div class="text-muted">Transactions in mempool</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.row-->
+		</div>
+		<div class="row" style="display:none;">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Site Traffic Overview
+						<ul class="pull-right panel-settings panel-button-tab-right">
+							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+								<em class="fa fa-cogs"></em>
+							</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<ul class="dropdown-settings">
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 1
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 2
+											</a></li>
+											<li class="divider"></li>
+											<li><a href="#">
+												<em class="fa fa-cog"></em> Settings 3
+											</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+		
+		
+		
+		
+			
+			
+			<div class="col-md-12">
+				<div class="panel panel-default ">
+					<div class="panel-heading">
+						Latest - Live
+						<span style='float:right'>
+						<input type='checkbox' id='sound' checked> Sound
+						</span>
+						</div>
+					<div class="panel-body timeline-container">
+						<ul class="timeline" id="listaLive">							{latest}
+						</ul>
+					</div>
+				</div>
+			</div><!--/.col-->
+
+
+
+
+			<div class="col-md-12 text-center" style='margin-bottom:15px;'>
+				<a class="btn btn-primary btn-lg btn-block" href="navigate" role="button">View full history</a>
+			</div>
+
+
+			<div class="col-sm-12">
+				<p class="back-link">ClamSpeech Explorer by <a href="https://criptocambio.com.br">CriptoCâmbio</a><br>
+				Clam Donations: <span style="text-transform:none">xTuV6FbN5jVWaRr74uWdwHarYAuLqe1MvL</span></p>
+				<center><iframe data-aa='967024' src='//acceptable.a-ads.com/967024' scrolling='no' style='border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe></center>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+	
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	<script>
+		window.onload = function () {
+			/*var chart1 = document.getElementById("line-chart").getContext("2d");
+			window.myLine = new Chart(chart1).Line(lineChartData, {
+			responsive: true,
+			scaleLineColor: "rgba(0,0,0,.2)",
+			scaleGridLineColor: "rgba(0,0,0,.05)",
+			scaleFontColor: "#c5c7cc"
+			});*/
+			live();
+		};
+var none=0;
+var ultimoBloco={latestBlock};
+
+function live(){
+	$.ajax({
+		//dataType: "json",
+		url: 'live?bloco='+ultimoBloco,
+		//url: 'live?bloco='+2171313,
+		success: function(data){
+			data=JSON.parse(data);
+			if(data.length>0){
+				if(document.getElementById('sound').checked && typeof(data[0]['bloco'])=='number'){
+					var audio = new Audio('new.mp3');
+					audio.play();						
+				}
+				
+				/*ultimoBloco=data[0]['bloco'];
+				$('.ultimoBloco').html(data[0]['bloco']);
+				$('.totalSpeech').html(data[0]['total']);
+				$('.liveItem').each(function(index){
+					if($(this).find('.blocoInner').html()!=data[index]['bloco']){
+						$(this).fadeOut('slow', function(){
+							$('.liveItem').eq(index).find('.blocoInner').html(data[index]['bloco']);
+							$('.liveItem').eq(index).find('.idInner').html(data[index]['id']);
+							$('.liveItem').eq(index).find('.altidInner').attr('onmouseover', "this.innerHTML='"+data[index]['altId']+"'");
+							
+							$('.liveItem').eq(index).find('.speechInner').html(data[index]['speech']);
+							
+
+							$('.liveItem').fadeIn('slow');
+						});	
+					}
+					
+				})*/
+
+				
+
+				if(typeof(data[0]['bloco'])=='number'){
+					ultimoBloco=data[0]['bloco'];
+				}
+
+				$('.ultimoBloco').html(data[0]['bloco']);
+				$('.totalSpeech').html(data[0]['total']);
+				$('.mempoolTransactions').html(data[0]['mempool'].length);
+				
+
+				var html='';
+
+				
+				for(var i=0;i<data.length;i++){
+					if(data[i]['speech'] && data[i]['speech']!='' ){
+						var htmlTemp=$('#baseLive').html()
+						.replace(/{bloco}/g, data[i]['bloco'])
+						.replace(/{id}/g, data[i]['id'])
+						.replace(/{altId}/g, data[i]['altId'])
+						.replace(/{speech}/g, data[i]['speech']);
+
+						html=html+htmlTemp;
+					}
+				}
+
+				
+
+				$('#listaLive').html(html+$('#listaLive').html());
+
+				//remover os antigos
+				setTimeout(function(){
+					$('#listaLive').find('.liveItem').slideDown('slow');
+					//$('.liveItem').slideDown('slow');
+					$('#listaLive').find('.liveItem').each(function(i){
+						if(i>9){
+							$(this).slideUp('slow', function(){
+								$(this).remove();
+							})
+						}
+					})
+				},100)
+				/*for(var i=9;i>9-data.length;i--){
+					$('.liveItem').eq(i).slideUp('slow', function(){
+						$(this).remove();
+					})
+				}*/
+				
+
+			}
+
+
+
+			setTimeout(function(){
+				live();
+			},2000);
+		}
+	})
+}
+
+
+	</script>
+		
+
+	<div id='baseLive' style='display:none;'>
+		<li class='liveItem' style='display:none;'>
+			<div class="timeline-badge primary"><em class="fa fa-comments"></em></div>
+			<div class="timeline-panel">
+				<div class="timeline-heading">
+					<h4 class="timeline-title">Block <span class="blocoInner">{bloco}</span>, TX <span class="idInner">{id}</span><span onmouseover="this.innerHTML='{altId}'" onmouseout="this.innerHTML='(...)'" style='position:absolute;' class="altidInner">(...)</span>
+					</h4>
+				</div>
+				<div class="timeline-body">
+					<p>
+					<em class="fa fa-sm fa-quote-left color-gray"></em>
+					<span class="speechInner"><script type="text/plain" class='speech'>{speech}</script></span>
+					<em class="fa fa-sm fa-quote-right color-gray"></em>
+					</p>
+				</div>
+			</div>
+		</li>
+	</div>
+	
+
+</body>
+</html>
+
+{pedaco}
+<!-- 1: pedaco dos ultimos -->
+<li class='liveItem'>
+	<div class="timeline-badge primary"><em class="fa fa-comments"></em></div>
+	<div class="timeline-panel">
+		<div class="timeline-heading">
+			<h4 class="timeline-title">Block <span class="blocoInner">{bloco}</span>, TX <span class="idInner">{id}</span><span onmouseover="this.innerHTML='{altId}'" onmouseout="this.innerHTML='(...)'" style='position:absolute;' class="altidInner">(...)</span>
+			</h4>
+		</div>
+		<div class="timeline-body">
+			<p>
+			<em class="fa fa-sm fa-quote-left color-gray"></em>
+			<span class="speechInner"><script type="text/plain" class='speech'>{speech}</script></span>
+			<em class="fa fa-sm fa-quote-right color-gray"></em>
+			</p>
+		</div>
+	</div>
+</li>
+
+
+{pedaco}
+<!-- 2: link de paginacao -->
+ <li class="page-item"><a class="page-link" href="navigate?page={page}">{pageplus}</a></li>

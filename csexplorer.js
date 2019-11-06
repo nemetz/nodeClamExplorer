@@ -10,15 +10,7 @@ var numCPUs = require('os').cpus().length;
 //atualizar valores
 
 
-/*
-setInterval(function(){
-	exec('ps ax | grep clam', function(err, saidaConsole){
-		if(saidaConsole.indexOf('clamd')==-1){
-			exec('nohup clamd &');
-			console.log('clamd reanimado');
-		}
-	});
-}, 5000)*/
+
 
 
 
@@ -32,8 +24,8 @@ var Busboy = require('busboy');
 var database = mysql.createPool({
   host     : 'localhost',
   user     : 'root',
-  password : 'mwave32',
-  database:'cpf',
+  password : '',
+  database:'clam',
   connectionLimit : 800
 });*/
 
